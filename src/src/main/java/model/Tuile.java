@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Random;
+
 public class Tuile {
     //protected static int id; a initier plus tard avec la classe joueur
     protected int[] up = new int[3];
@@ -9,18 +11,12 @@ public class Tuile {
     //protected boolean existLeft, existRight;
 
     public Tuile() {
-        up[0] =     (int)Math.random();
-        up[1] =     (int)Math.random();
-        up[2] =     (int)Math.random();
-        down[0] =   (int)Math.random();
-        down[1] =   (int)Math.random();
-        down[2] =   (int)Math.random();
-        left[0] =   (int)Math.random();
-        left[1] =   (int)Math.random();
-        left[2] =   (int)Math.random();
-        right[0] =  (int)Math.random();
-        right[1] =  (int)Math.random();
-        right[2] =  (int)Math.random();
+        for (int i=0; i<3; i++){
+            up[i] =       new Random().nextInt(2);
+            down[i] =     new Random().nextInt(2);
+            left[i] =     new Random().nextInt(2);
+            right[i] =    new Random().nextInt(2);
+        }
     }
 
     public Tuile(int[] a, int[] b, int[] c, int[] d) {
@@ -30,13 +26,38 @@ public class Tuile {
         right = d;
     }
 
+    /*public void affiche(){
+        System.out.println(" "+up[0]+up[1]+up[2]+" ");
+        System.out.println(left[0]+"   "+right[0]);
+        System.out.println(left[1]+"   "+right[1]);
+        System.out.println(left[2]+"   "+right[2]);
+        System.out.println(" "+down[0]+down[1]+down[2]+" ");
+        System.out.println();
+    }*/
+
+
     //rotation sens aiguille sens montre
     public void rotation(){
-        int[] upBis = up, downBis = down, leftBis = left, rightBis =right;
-        up = leftBis;
-        down = rightBis;
-        right = upBis;
-        left = downBis;
+        int[] temp = new int[3];
+        temp[0] = up[0];
+        temp[1] = up[1];
+        temp[2] = up[2];
+
+        up[0] = left[0];
+        up[1] = left[1];
+        up[2] = left[2];
+
+        left[0] = down[0];
+        left[1] = down[1];
+        left[2] = down[2];
+
+        down[0] = right[0];
+        down[1] = right[1];
+        down[2] = right[2];
+
+        right[0] = temp[0];
+        right[1] = temp[1];
+        right[2] = temp[2];
     }
 
     // ----getter et setter----

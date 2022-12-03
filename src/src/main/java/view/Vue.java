@@ -13,37 +13,42 @@ public class Vue {
         a.setSonTour(true);
         b = new Joueur();
         limiteSac = 10;
-        for (int i=0; i<plateau.length; i++){
-            for (int j=0; j<plateau[i].length; j++){
-                int[]x = new int[3];
-                x[0]=-1;
-                x[1]=-1;
-                x[2]=-1;
-                plateau[i][j] = new Tuile(x,x,x,x);
-            }
-        }
         plateau[5][5] = new Tuile();
     }
-
-    public void add(int i, int j){
-
+    public void add(int x, int y){
+        plateau[x][y] = new Tuile();
     }
+    private boolean estNull(int i, int j){ return plateau[i][j]== null; }
 
     public void affichage(){
-        System.out.println("Plateau :");
-        for (Tuile[] t : plateau){
-            for (Tuile t2 : t){
-                System.out.print(t2.getUp()[0] + " " + t2.getUp()[1] + " " + t2.getUp()[2]);
-                System.out.print(t2.getLeft()[0] + " " + t2.getLeft()[1] + " " + t2.getLeft()[2]);
-                System.out.print(t2.getRight()[0] + " " + t2.getRight()[1] + " " + t2.getRight()[2]);
-                System.out.print(t2.getDown()[0] + " " + t2.getDown()[1] + " " + t2.getDown()[2]);
+        for (int i=0; i<10; i++){
+            String[] x = new String[5];
+            for (int k=0; k<5; k++) x[k] = "";
+            for (int j=0; j<10; j++){
+                if (estNull(i,j)) {
+                    x[0] += "     ";
+                    x[1] += "     ";
+                    x[2] += "     ";
+                    x[3] += "     ";
+                    x[4] += "     ";
+                } else {
+                    x[0] += " " + plateau[i][j].getUp()[0] + plateau[i][j].getUp()[1] + plateau[i][j].getUp()[2] + " ";
+                    x[1] += plateau[i][j].getLeft()[0] + "   " + plateau[i][j].getRight()[0];
+                    x[2] += plateau[i][j].getLeft()[1] + "   " + plateau[i][j].getRight()[1];
+                    x[3] += plateau[i][j].getLeft()[2] + "   " + plateau[i][j].getRight()[2];
+                    x[4] += " " + plateau[i][j].getDown()[0] + plateau[i][j].getDown()[1] + plateau[i][j].getDown()[2] + " ";
+                }
             }
-            System.out.println();
+            for (int k=0; k<5; k++) System.out.println(x[k]);
         }
     }
-
     public static void main(String[] args) {
         Vue v = new Vue();
+        v.add(5,4);
+        v.add(5,6);
+        v.add(4,5);
+        v.add(6,5);
+        v.add(4,4);
         v.affichage();
     }
 }
