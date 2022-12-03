@@ -21,9 +21,19 @@ public class Vue {
     private boolean estNull(int i, int j){ return plateau[i][j]== null; }
 
     public void affichage(){
+        System.out.println("Joueur "+a.getId()+" : "+a.getMain().size()+" tuiles");
+        System.out.println("Joueur "+b.getId()+" : "+b.getMain().size()+" tuiles");
+        System.out.println("Tuiles restantes : "+limiteSac);
+        System.out.println();
+        System.out.print("    ");
+        System.out.print("|");
+        for (int i=0; i<10; i++) System.out.print("| "+i+" |");
+        System.out.print("|");
+        System.out.println('\n');
         for (int i=0; i<10; i++){
+            System.out.print("|"+i+"|"+'\n');
             String[] x = new String[5];
-            for (int k=0; k<5; k++) x[k] = "";
+            for (int k=0; k<5; k++) x[k] = "     ";
             for (int j=0; j<10; j++){
                 if (estNull(i,j)) {
                     x[0] += "     ";
@@ -49,6 +59,9 @@ public class Vue {
         v.add(4,5);
         v.add(6,5);
         v.add(4,4);
+        v.add(0,0);
+        v.add(1,1);
+        v.add(9,9);
         v.affichage();
     }
 }
