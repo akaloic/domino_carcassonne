@@ -5,15 +5,38 @@ import java.util.LinkedList;
 public class Joueur {
     protected int id;
     private static int n = 0;
+    private int point;
+    protected Main main;
+
     protected boolean tour;
-    protected LinkedList<Tuile> main = new LinkedList<>();
 
     public Joueur() {
         id = n++;
         tour = false;
+        main = new Main();
+        point = 0;
     }
 
-    void pioche(){ main.add(new Tuile()); }
+    public class Main {
+        protected int max;
+        protected LinkedList<Tuile> list = new LinkedList<>();
+
+        public Main() {
+            max = 5;
+        }
+        public int taille(){ return list.size(); }
+        public void pioche(){
+            if (taille() < max) list.add(new Tuile());
+            //else -> est potentielllement une Exception
+        }
+
+        public void AJouer(){
+            //if (taille()-1 < 0) Exception
+            list.removeLast();
+        }
+    }
+
+    //void pioche(){ main.add(new Tuile()); }
 
     // ----getter et setter----
     public int getId() {
@@ -22,9 +45,8 @@ public class Joueur {
     public boolean sonTour() {
         return tour;
     }
-    public LinkedList<Tuile> getMain() {
-        return main;
-    }
+
+    public Main getMain() { return main; }
 
     public void setSonTour(boolean tour) {
         this.tour = tour;

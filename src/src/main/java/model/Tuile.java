@@ -8,7 +8,7 @@ public class Tuile {
     protected int[] down = new int[3];
     protected int[] left = new int[3];
     protected int[] right = new int[3];
-    //protected boolean existLeft, existRight;
+    protected boolean existLeft, existRight, existUp, existDown;
 
     public Tuile() {
         for (int i=0; i<3; i++){
@@ -17,6 +17,10 @@ public class Tuile {
             left[i] =     new Random().nextInt(2);
             right[i] =    new Random().nextInt(2);
         }
+        existRight = false;
+        existLeft = false;
+        existDown = false;
+        existUp = false;
     }
 
     public Tuile(int[] a, int[] b, int[] c, int[] d) {
@@ -25,15 +29,6 @@ public class Tuile {
         left = c;
         right = d;
     }
-
-    /*public void affiche(){
-        System.out.println(" "+up[0]+up[1]+up[2]+" ");
-        System.out.println(left[0]+"   "+right[0]);
-        System.out.println(left[1]+"   "+right[1]);
-        System.out.println(left[2]+"   "+right[2]);
-        System.out.println(" "+down[0]+down[1]+down[2]+" ");
-        System.out.println();
-    }*/
 
 
     //rotation sens aiguille sens montre
@@ -92,5 +87,37 @@ public class Tuile {
     public void setRight(int[] right) {
         this.right = right;
     }
-    // ----getter et setter----
+
+    public boolean isExistLeft() {
+        return existLeft;
+    }
+
+    public void setExistLeft(boolean existLeft) {
+        this.existLeft = existLeft;
+    }
+
+    public boolean isExistRight() {
+        return existRight;
+    }
+
+    public void setExistRight(boolean existRight) {
+        this.existRight = existRight;
+    }
+
+    public boolean isExistUp() {
+        return existUp;
+    }
+
+    public void setExistUp(boolean existUp) {
+        this.existUp = existUp;
+    }
+
+    public boolean isExistDown() {
+        return existDown;
+    }
+
+    public void setExistDown(boolean existDown) {
+        this.existDown = existDown;
+    }
+// ----getter et setter----
 }

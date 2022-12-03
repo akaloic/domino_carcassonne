@@ -17,12 +17,29 @@ public class Vue {
     }
     public void add(int x, int y){
         plateau[x][y] = new Tuile();
+        //test si la tuile a des voisins
+        if (plateau[x+1][y] != null) {
+            plateau[x][y].setExistDown(true);
+            plateau[x+1][y].setExistUp(true);
+        }
+        if (plateau[x-1][y] != null){
+            plateau[x][y].setExistUp(true);
+            plateau[x-1][y].setExistDown(true);
+        }
+        if (plateau[x][y+1] != null){
+            plateau[x][y].setExistRight(true);
+            plateau[x][y+1].setExistLeft(true);
+        }
+        if (plateau[x][y-1] != null) {
+            plateau[x][y].setExistLeft(true);
+            plateau[x][y-1].setExistRight(true);
+        }
     }
     private boolean estNull(int i, int j){ return plateau[i][j]== null; }
 
     public void affichage(){
-        System.out.println("Joueur "+a.getId()+" : "+a.getMain().size()+" tuiles");
-        System.out.println("Joueur "+b.getId()+" : "+b.getMain().size()+" tuiles");
+        System.out.println("Joueur "+a.getId()+" : "+a.getMain().taille()+" tuiles");
+        System.out.println("Joueur "+b.getId()+" : "+b.getMain().taille()+" tuiles");
         System.out.println("Tuiles restantes : "+limiteSac);
         System.out.println();
         System.out.print("    ");
