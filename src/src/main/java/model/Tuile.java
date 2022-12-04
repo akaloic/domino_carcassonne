@@ -3,7 +3,6 @@ package model;
 import java.util.Random;
 
 public class Tuile {
-    //protected static int id; a initier plus tard avec la classe joueur
     protected int[] up = new int[3];
     protected int[] down = new int[3];
     protected int[] left = new int[3];
@@ -21,10 +20,6 @@ public class Tuile {
         existLeft = false;
         existDown = false;
         existUp = false;
-    }
-
-    public Tuile(int[] a, int[] b, int[] c, int[] d) {
-
     }
 
 
@@ -50,6 +45,14 @@ public class Tuile {
         right[0] = temp[0];
         right[1] = temp[1];
         right[2] = temp[2];
+    }
+
+    public void affiche(){
+        System.out.println(" "+ up[0]+up[1]+ up[2]+" ");
+        System.out.println(left[0]+"   "+right[0]);
+        System.out.println(left[1]+"   "+right[1]);
+        System.out.println(left[2]+"   "+right[2]);
+        System.out.println(" "+ down[0]+down[1]+ down[2]+" ");
     }
 
     // ----getter et setter----

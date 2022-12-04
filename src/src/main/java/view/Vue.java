@@ -26,8 +26,8 @@ public class Vue {
         if (estNull(x,y)){
             boolean ok = tour;
             tour = !tour;
-            if (ok) plateau[x][y] = a.Joue();
-            else plateau[x][y] = b.Joue();
+            if (ok) plateau[x][y] = a.tuile();
+            else plateau[x][y] = b.tuile();
             //test si la tuile a des voisins
             if (!estDehors(x-1, y)) {
                 if(!estNull(x-1,y)){
@@ -95,13 +95,21 @@ public class Vue {
         }
     }
 
-
+    public void pioche(){
+        if (limiteSac > 0){
+            if (tour) a.pioche();
+            else b.pioche();
+            limiteSac--;
+        }else{
+            System.out.print("Le sac est vide.");
+        }
+    }
     private boolean estDehors(int i, int j){ return (i < 0 || i > 9 || j < 0 || j > 9); }
     private boolean estNull(int i, int j){ return plateau[i][j]== null; }
 
     public void affichage(){
-        System.out.println("Joueur "+a.getId()+" : "+a.taille()+" tuiles");
-        System.out.println("Joueur "+b.getId()+" : "+b.taille()+" tuiles");
+        System.out.println("JoueurA"+" : "+a.taille()+" tuiles");
+        System.out.println("JoueurB"+" : "+b.taille()+" tuiles");
         System.out.println("Tuiles restantes : "+limiteSac);
         System.out.println("Score : "+scoreA+" - "+scoreB);
         System.out.println("Tour du joueur "+(tour ? a.getId() : b.getId()));
@@ -135,14 +143,34 @@ public class Vue {
             for (int k=0; k<5; k++) System.out.println(x[k]);
         }
     }
+
+    // ----GETTER et SETTER----
+    public int getLimiteSac() {return limiteSac;}
+    public void setLimiteSac(int limiteSac) {this.limiteSac = limiteSac;}
+    public Joueur getA() {return a;}
+    public void setA(Joueur a) {this.a = a;}
+    public Joueur getB() {return b;}
+    public void setB(Joueur b) {this.b = b;}
+    public Tuile[][] getPlateau() {return plateau;}
+    public void setPlateau(Tuile[][] plateau) {this.plateau = plateau;}
+    public int getScoreA() {return scoreA;}
+    public void setScoreA(int scoreA) {this.scoreA = scoreA;}
+    public int getScoreB() {return scoreB;}
+    public void setScoreB(int scoreB) {this.scoreB = scoreB;}
+    public boolean getTour() {return tour;}
+    public void setTour(boolean tour) {this.tour = tour;}
+        // ----GETTER et SETTER----
+
     public static void main(String[] args) {
         Vue v = new Vue();
-        v.limiteSac -= v.a.pioche();
-        v.limiteSac -= v.b.pioche();
+        v.a.pioche();
+        v.b.pioche();
+        v.pioche();
+        v.pioche();
         v.add(5,4);
         v.add(5,6);
-        v.add(4,5);
-        v.add(6,5);
+        //v.add(4,5);
+        //v.add(6,5);
         v.affichage();
     }
 }

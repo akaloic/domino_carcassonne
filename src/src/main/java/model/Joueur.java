@@ -1,6 +1,7 @@
 package model;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class Joueur {
     protected int id;
@@ -18,27 +19,27 @@ public class Joueur {
     }
 
     public int taille(){ return main.list.size(); }
-    public int pioche(){
-        main.list.addFirst(new Tuile());
+    public void pioche(){
+        main.list.add(new Tuile());
         //else -> est potentielllement une Exception
-        return 1;
     }
 
-    public Tuile Joue(){
-        //if (taille()-1 < 0) Exception
-        Tuile x = main.list.getFirst();
-        return x;
+    public Tuile tuile(){
+        return main.list.peek();
     }
 
     public class Main {
         protected int max;
-        protected LinkedList<Tuile> list = new LinkedList<>();
+        protected Stack<Tuile> list = new Stack<>();
 
         public Main() {
             max = 5;
         }
 
-        public LinkedList<Tuile> getList() {return list;}
+        public void add(Tuile t) {
+            if (list.size() < max) list.add(t);
+            //else -> est potentielllement une Exception
+        }
     }
 
     //void pioche(){ main.add(new Tuile()); }
