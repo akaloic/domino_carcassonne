@@ -17,6 +17,19 @@ public class Joueur {
         point = 0;
     }
 
+    public int taille(){ return main.list.size(); }
+    public int pioche(){
+        main.list.addFirst(new Tuile());
+        //else -> est potentielllement une Exception
+        return 1;
+    }
+
+    public Tuile Joue(){
+        //if (taille()-1 < 0) Exception
+        Tuile x = main.list.getFirst();
+        return x;
+    }
+
     public class Main {
         protected int max;
         protected LinkedList<Tuile> list = new LinkedList<>();
@@ -24,21 +37,14 @@ public class Joueur {
         public Main() {
             max = 5;
         }
-        public int taille(){ return list.size(); }
-        public void pioche(){
-            if (taille() < max) list.add(new Tuile());
-            //else -> est potentielllement une Exception
-        }
 
-        public void AJouer(){
-            //if (taille()-1 < 0) Exception
-            list.removeLast();
-        }
+        public LinkedList<Tuile> getList() {return list;}
     }
 
     //void pioche(){ main.add(new Tuile()); }
 
     // ----getter et setter----
+
     public int getId() {
         return id;
     }

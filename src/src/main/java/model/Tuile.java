@@ -24,10 +24,7 @@ public class Tuile {
     }
 
     public Tuile(int[] a, int[] b, int[] c, int[] d) {
-        up = a;
-        down = b;
-        left = c;
-        right = d;
+
     }
 
 
@@ -88,9 +85,7 @@ public class Tuile {
         this.right = right;
     }
 
-    public boolean isExistLeft() {
-        return existLeft;
-    }
+    public boolean isExistLeft() {return existLeft;}
 
     public void setExistLeft(boolean existLeft) {
         this.existLeft = existLeft;
